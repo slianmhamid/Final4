@@ -43,7 +43,7 @@ public:
       bool hasPlayerReachedMaxLevel() const;
 
       bool operator>(const Player& source) const;
-      int handleEncounterEffect(int combatPower, int loot, int damage);
+      bool handleEncounterEffect(int combatPower, int loot, int damage);//
 
 private:
       std::string playerName;
