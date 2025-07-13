@@ -224,6 +224,11 @@ void MatamStory::playRound() {
 
 bool MatamStory::isGameOver() const {
       /*===== Implement the game over condition =====*/
+      if(gameWinner) {
+            if (gameWinner->isMaxLevel()) {
+                  return true;
+            }
+      }
       if (areAllPlayersDead()) {
             return true;
       }
