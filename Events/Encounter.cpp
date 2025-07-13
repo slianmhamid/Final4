@@ -1,9 +1,7 @@
 #include "Encounter.h"
 #include "Utilities.h"
 
-#include <string>
-
-Encounter::Encounter(const std::string &name, int encounterCombatPower,
+Encounter::Encounter(const string &name, int encounterCombatPower,
                      int encounterLoot, int encounterDamage):
                      Event(name),
                      encounterCombatPower(encounterCombatPower),
@@ -28,14 +26,11 @@ std::string Encounter::getDescription() const {
              std::to_string(encounterLoot) + ", damage " + std::to_string(encounterDamage) + ")";
 }
 
-Snail::Snail(): Encounter("Snail", 5, 2, 10) {
-}
+Snail::Snail(): Encounter("Snail", 5, 2, 10) {}
 
-Slime::Slime(): Encounter("Slime", 12, 5, 25) {
-}
+Slime::Slime(): Encounter("Slime", 12, 5, 25) {}
 
-Balrog::Balrog(): Encounter("Balrog", 15, 100, 9001) {
-}
+Balrog::Balrog(): Encounter("Balrog", 15, 100, 9001) {}
 
 int Balrog::applyEffect(Player &player){
     int effect = player.handleEncounterEffect(encounterCombatPower,encounterLoot,encounterDamage);
@@ -46,9 +41,9 @@ int Balrog::applyEffect(Player &player){
     return 0;
 }
 
-Pack::Pack(const std::vector<std::shared_ptr<Encounter>> &encounters) : Encounter("Pack", 0, 0, 0),
+Pack::Pack(vector<std::shared_ptr<Encounter>> encounters) : Encounter("Pack", 0, 0, 0),
                                                                   packSize(0), countBalrogs(0),
-                                                                  pack(std::move(encounters)) {
+                                                                  encounters(std::move(encounters)) {
       for (auto cit = this->pack.cbegin(); cit != this->pack.cend(); ++cit) {
             encounterCombatPower += (*cit)->getCombatPower();
             encounterDamage += (*cit)->getDamage();
@@ -60,7 +55,7 @@ Pack::Pack(const std::vector<std::shared_ptr<Encounter>> &encounters) : Encounte
       }
 }
 
-std::string Pack::getDescription() const {
+string Pack::getDescription() const {
       return "Pack of " + std::to_string(packSize) + " members (power " +
              std::to_string(encounterCombatPower) + ", loot " +
              std::to_string(encounterLoot) + ", damage " + std::to_string(encounterDamage) + ")";
