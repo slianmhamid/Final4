@@ -7,7 +7,7 @@
 #include <deque>
 #include <vector>
 #include <memory>
-
+#include <list>
 
 #include "Utilities.h"
 #include "Players/Player.h"
@@ -17,7 +17,7 @@
 using std::shared_ptr;
 using std::string;
 using std::vector;
-
+using std::list;
 
 struct CompareTwoPlayers {
       bool operator()(const shared_ptr<Player>& player1, const shared_ptr<Player>& player2) const {

@@ -254,10 +254,10 @@ void MatamStory::play() {
       printGameOver();
 
       /*===== Print either a "winner" message or "no winner" message =====*/
-      if (areAllPlayersDead()) {
+      if (areAllPlayersDead() && !gameWinner->hasPlayerReachedMaxLevel()) {
             printNoWinners();
       } else {
-            //if character reached 10 ?
+            printWinner(*gameWinner);
       }
 }
 
