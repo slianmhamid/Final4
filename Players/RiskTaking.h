@@ -5,6 +5,6 @@
 
 class RiskTaking : public CharacterType {
 public:
-    RiskTaking(const string& type);
-    int applyPotionsMerchantEffect(Player& player) const override;
+      RiskTaking(const std::string& type);
+      int applyPotionsMerchantEffect(Player& player) const override;
 };

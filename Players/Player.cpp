@@ -3,7 +3,7 @@
 
 static const int MAX_LEVEL = 10;
 
-Player::Player(const string& name,
+Player::Player(const std::string& name,
       std::shared_ptr<CharacterRole> role,
       std::shared_ptr<CharacterType> type) :
       playerName(name),
@@ -16,7 +16,7 @@ Player::Player(const string& name,
       playerRole(std::move (role)),
       playerType(std::move (type)) {}
 
-string Player::getName() const {
+std::string Player::getName() const {
       return playerName;
 }
 int Player::getLevel() const {
@@ -34,7 +34,7 @@ int Player::getMaxHP() const {
 int Player::getCoins() const {
       return playerCoins;
 }
-string Player::getDescription() const {
+std::string Player::getDescription() const {
       return playerName + ", " + getRoleName() +
             " with " + getTypeName() + " character" +
             " (level" + std:: to_string(playerLevel) +
@@ -42,10 +42,10 @@ string Player::getDescription() const {
 }
 
 
-string Player::getRoleName() const {
+std::string Player::getRoleName() const {
       return playerRole->getRoleName();
 }
-string Player::getTypeName() const {
+std::string Player::getTypeName() const {
       return playerType->getTypeName();
 }
 std::shared_ptr<CharacterRole> Player::getCharacterRole() const {
