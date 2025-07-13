@@ -44,7 +44,7 @@ int Balrog::applyEffect(Player &player){
 Pack::Pack(vector<std::shared_ptr<Encounter>> encounters) : Encounter("Pack", 0, 0, 0),
                                                                   packSize(0), countBalrogs(0),
                                                                   encounters(std::move(encounters)) {
-      for (auto cit = this->pack.cbegin(); cit != this->pack.cend(); ++cit) {
+      for (auto cit = this->encounters.cbegin(); cit != this->encounters.cend(); ++cit) {
             encounterCombatPower += (*cit)->getCombatPower();
             encounterDamage += (*cit)->getDamage();
             encounterLoot += (*cit)->getLoot();
@@ -86,6 +86,6 @@ int Pack::applyEffect(Player &player) {
     return 0;
 }
 
-const std::vector<std::shared_ptr<Encounter>> &Pack::getEncounters() const {
-      return pack;
+const std::vector<std::shared_ptr<Encounter>>& Pack::getEncounters() const {
+      return encounters;
 }
