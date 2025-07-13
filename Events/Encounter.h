@@ -4,58 +4,57 @@
 #include <vector>
 #include <memory>
 
-using namespace std;
 
 class Encounter : public Event {
 protected:
-    int encounterCombatPower;
-    int encounterLoot;
-    int encounterDamage;
+      int encounterCombatPower;
+      int encounterLoot;
+      int encounterDamage;
 
 public:
-    Encounter(const string &name, int combatPower, int loot, int damage);
+      Encounter(const string &name, int combatPower, int loot, int damage);
 
-    int getLoot() const;
+      int getLoot() const;
 
-    int getDamage() const;
+      int getDamage() const;
 
-    int getCombatPower() const;
+      int getCombatPower() const;
 
-    string getDescription() const override;
+      std::string getDescription() const override;
 
-    int applyEffect(Player &player) override;
+      int applyEffect(Player &player) override;
 
-    string eventEffectResult(Player &player, int effect) const override;
+      std::string eventEffectResult(Player &player, int effect) const override;
 };
 
 class Snail : public Encounter {
 public:
-    Snail();
+      Snail();
 };
 
 class Slime : public Encounter {
 public:
-    Slime();
+      Slime();
 };
 
 class Balrog : public Encounter {
 public:
-    Balrog();
+      Balrog();
 
-    int applyEffect(Player &player) override;
+      int applyEffect(Player &player) override;
 };
 
 class Pack : public Encounter {
-    int packSize;
-    int countBalrogs;
-    std::vector<std::shared_ptr<Encounter> > pack;
+      int packSize;
+      int countBalrogs;
+      std::vector<std::shared_ptr<Encounter> > pack;
 
 public:
-    Pack(vector<shared_ptr<Encounter> > encounters);
+      Pack(std::vector<std::shared_ptr<Encounter>> encounters);
 
-    string getDescription() const override;
+      std::string getDescription() const override;
 
-    int applyEffect(Player &player) override;
+      int applyEffect(Player &player) override;
 
-    const vector<std::shared_ptr<Encounter> > &getEncounters() const;
+      const std::vector<std::shared_ptr<Encounter>>& getEncounters() const;
 };

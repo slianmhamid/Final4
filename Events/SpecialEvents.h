@@ -1,11 +1,10 @@
 #pragma once
 #include "Event.h"
-#include "Utilities.h"
-
+#include <string>
 
 class SpecialEvents : public Event{
 public:
-    SpecialEvents(const string& name);
-    string getDescription() const override;
-    virtual ~SpecialEvents() = default;
+      SpecialEvents(const string& name);
+      std::string getDescription() const override;
+      virtual ~SpecialEvents() = default;
 };
