@@ -2,7 +2,6 @@
 
 #include "../Players/Player.h"
 #include "characterRole.h"
-#include <string>
 
 class Event {
 protected:
@@ -13,12 +12,12 @@ public:
        *
        * @return - the description of the event
       */
-      virtual std::string getDescription() const = 0;
-      Event(const std::string &name):eventName(name){}
+      virtual string getDescription() const = 0;
+      Event(const string &name):eventName(name){}
       virtual ~Event() = default;
-      virtual int applyEffect(Player& player) = 0;////
-      virtual std::string eventEffectResult(Player& player,int effect) const = 0;
-      std::string getEventName() const{
+      virtual int applyEffect(Player &player) = 0;
+      virtual string eventEffectResult(Player& player,int effect) const = 0;
+      string getEventName() const{
             return eventName;
       }
 };

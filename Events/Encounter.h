@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <memory>
-#include <string>
+
+using namespace std;
 
 class Encounter : public Event{
 protected:
@@ -12,7 +13,7 @@ protected:
       int encounterDamage;
 
 public:
-      Encounter(const std::string &name, int combatPower, int loot, int damage);
+      Encounter(const string &name, int combatPower, int loot, int damage);
 
       int getLoot() const;
 
@@ -20,11 +21,11 @@ public:
 
       int getCombatPower() const;
 
-      std::string getDescription() const override;
+      string getDescription() const override;
 
-      int applyEffect(Player &player) override;
+      virtual int applyEffect(Player &player) override;
 
-      std::string eventEffectResult(Player &player, int effect) const override;
+      string eventEffectResult(Player &player, int effect) const override;
 };
 
 class Snail : public Encounter{
@@ -47,14 +48,14 @@ public:
 class Pack : public Encounter{
       int packSize;
       int countBalrogs;
-      std::vector<std::shared_ptr<Encounter>> pack;
+      std::vector<std::shared_ptr<Encounter>> encounters;
 
 public:
-      Pack(const std::vector<std::shared_ptr<Encounter>> &encounters);
+      Pack(vector<shared_ptr<Encounter>> encounters);
 
-      std::string getDescription() const override;
+      string getDescription() const override;
 
       int applyEffect(Player &player) override;
 
-      const std::vector<std::shared_ptr<Encounter>>& getEncounters() const;
+      const vector<std::shared_ptr<Encounter>>& getEncounters() const;
 };
