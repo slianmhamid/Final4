@@ -1,0 +1,3 @@
+C:/Users/Zaina/Desktop/winter2425/matam.w/HW4_2425A/Players/cmake-build-debug/CMakeFiles/Players.dir
+C:/Users/Zaina/Desktop/winter2425/matam.w/HW4_2425A/Players/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Zaina/Desktop/winter2425/matam.w/HW4_2425A/Players/cmake-build-debug/CMakeFiles/rebuild_cache.dir
