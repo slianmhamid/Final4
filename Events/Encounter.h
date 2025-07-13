@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 
-class Encounter : public Event {
+class Encounter : public Event{
 protected:
       int encounterCombatPower;
       int encounterLoot;
@@ -27,24 +27,24 @@ public:
       std::string eventEffectResult(Player &player, int effect) const override;
 };
 
-class Snail : public Encounter {
+class Snail : public Encounter{
 public:
       Snail();
 };
 
-class Slime : public Encounter {
+class Slime : public Encounter{
 public:
       Slime();
 };
 
-class Balrog : public Encounter {
+class Balrog : public Encounter{
 public:
       Balrog();
 
       int applyEffect(Player &player) override;
 };
 
-class Pack : public Encounter {
+class Pack : public Encounter{
       int packSize;
       int countBalrogs;
       std::vector<std::shared_ptr<Encounter>> pack;
