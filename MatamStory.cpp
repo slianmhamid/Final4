@@ -141,39 +141,34 @@ shared_ptr<Event> MatamStory::getNonPackReady(const string& event) {
       throw std::runtime_error("Invalid Events File");
 }
 
-shared_ptr<Pack> MatamStory::getPackReady(const std::deque<std::string>& deque,int& index) {
-
-      const std::string &eventString = deque[index + 1];
-
-      for (char letter : eventString) {
-            if (letter == '.') {
-                  throw std::runtime_error("Invalid Events File");
-            }
-      }
-
-      unsigned int packSize = std::stoi(deque[++index]);
-      if (packSize < 2) {
+shared_ptr<Pack> MatamStory::getPackReady(const std::deque<std::string> & words,int &index){
+    unsigned int tmp = index + 1;
+    const std::string &eventStr = words[tmp];
+    for (char ch : eventStr) {
+        if (ch == '.') {
             throw std::runtime_error("Invalid Events File");
-      }
-
-      std::vector<std::shared_ptr<Encounter>> packEncounters;
-      index++;
-
-      for (unsigned int i = 0; i < packSize; i++) {
-            if (index >= static_cast<int>(deque.size())) {
-                  throw std::runtime_error("Invalid Events File");
-            }
-            if (deque[index] == "Pack") {
-                  std::shared_ptr<Pack> nestedPack = getPackReady(deque, index);
-                  const auto &nestedEncounters = nestedPack->getEncounters();
-                  packEncounters.insert(packEncounters.end(), nestedEncounters.begin(), nestedEncounters.end());
-            } else {
-                  packEncounters.push_back(getEncounterReady(deque[index]));
-                  index++;
-            }
-      }
-
-      return std::make_shared<Pack>(Pack(packEncounters));
+        }
+    }
+    unsigned int length = std::stoi(words[++index]);
+    if (length < 2) {
+        throw std::runtime_error("Invalid Events File");
+    }
+    std::vector<std::shared_ptr<Encounter>> packMembers;
+    ++index;
+    for (unsigned int i = 0; i < length; ++i) {
+        if (index >= static_cast<int>(words.size())) {
+            throw std::runtime_error("Invalid Events File");
+        }
+        if (words[index] == "Pack") {
+            std::shared_ptr<Pack> nestedPack = createPack(words, index);
+            const auto &nestedMembers = nestedPack->getEncounters();
+            packMembers.insert(packMembers.end(), nestedMembers.begin(), nestedMembers.end());
+        } else {
+            packMembers.push_back(createEncounter(words[index]));
+            ++index;
+        }
+    }
+    return std::make_shared<Pack>(Pack(packMembers));
 }
 
 void MatamStory::playTurn(Player& player) {
