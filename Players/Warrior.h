@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Player.h"
 #include "CharacterRole.h"
 
 class Warrior : public CharacterRole {
