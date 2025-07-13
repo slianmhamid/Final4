@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <memory>
-
+#include <string>
 
 class Encounter : public Event {
 protected:
@@ -12,7 +12,7 @@ protected:
       int encounterDamage;
 
 public:
-      Encounter(const string &name, int combatPower, int loot, int damage);
+      Encounter(const std::string &name, int combatPower, int loot, int damage);
 
       int getLoot() const;
 
@@ -47,10 +47,10 @@ public:
 class Pack : public Encounter {
       int packSize;
       int countBalrogs;
-      std::vector<std::shared_ptr<Encounter> > pack;
+      std::vector<std::shared_ptr<Encounter>> pack;
 
 public:
-      Pack(std::vector<std::shared_ptr<Encounter>> encounters);
+      Pack(const std::vector<std::shared_ptr<Encounter>> &encounters);
 
       std::string getDescription() const override;
 
