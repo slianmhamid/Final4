@@ -1,5 +1,5 @@
 #include "Player.h"
-#include <algorithm>
+#include <algorithm>///
 
 static const int MAX_LEVEL = 10;
 
@@ -100,6 +100,15 @@ bool Player::operator>(const Player& source) const {
       return playerName < source.playerName;
 }
 
-int Player::handleEncounterEffect(int combatPower, int loot, int damage) {
-      return playerRole->handleEncounterEffect(*this, combatPower, loot, damage);
+bool Player::handleEncounterEffect(int combatPower, int loot, int damage) {
+      if(this->getCombatPower() > combatPower) {
+        this->addLoot(loot);
+        levelUp();
+        if((this->playerRole)->getRoleName() == "Warrior")
+            this->damage(10);
+        return true;
+    }else {
+          this->damage(damage) ;
+          return false;
+    }
 }
